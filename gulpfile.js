@@ -2,48 +2,46 @@
  * Created by George on 9/26/2015.
  */
 
+//TODO: Add minify, clean and watch(restart server on js file change ) tasks
+
 (function () {
     "use strict";
 
     var gulp = require('gulp'),
-        wiredep = require('wiredep').stream,
         config = require('./gulpConfig.js'),
         $ = require('gulp-load-plugins')({lazy: true});
 
-    gulp.task('wiredep', function () {
 
-        var options = config.getWiredepDefaultOptions();
+    gulp.task('serve', function () {
+        var express = require('express'),
+            app = express(),
+            path = require('path');
 
-        return gulp
-            .src(config.index)
-            .pipe(wiredep(options))
-            .pipe($.inject(gulp.src(config.js)))
-            .pipe(gulp.dest(config.client));
+        app.use(express.static('./client'));
+
+        app.get('/', function (req, res) {
+            res.sendFile('./client/index.html');
+        });
+
+        app.listen(3000, function () {
+            console.log('Child Care App is running on Port 3000');
+        });
     });
 
-    gulp.task('server', function(){
+    gulp.task('browserify', function () {
+        var rename = require('gulp-rename'),
+            browserify = require('gulp-browserify');
 
-            var express = require('express'),
-                app = express(),
-                nodemon = require('nodemon'),
-                path = require('path');
-
-            app.use(express.static('./client'));
-            app.use(express.static('./node_modules'));
-            app.get('/', function (req, res) {
-
-                res.sendFile('./client/index.html');
-
-            });
-
-
-            app.listen(3000, function () {
-                console.log('Child Care App is running on Port 3000');
-            });
-
+        // Single entry point to browserify
+        gulp.src('./client/index.js')
+            .pipe(browserify({
+                insertGlobals: true
+            }))
+            .pipe(rename('bundle.js'))
+            .pipe(gulp.dest('./client/'))
     });
 
-    gulp.task('build', ['wiredep', 'server']);
+    gulp.task('build', ['browserify', 'serve']);
 
 
 }());

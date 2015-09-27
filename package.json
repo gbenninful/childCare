@@ -20,6 +20,7 @@
     "gulp-inject": "^3.0.0",
     "gulp-load-plugins": "^0.10.0",
     "gulp-nodemon": "^2.0.4",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.4",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.10",
@@ -30,7 +31,6 @@
     "angular": "^1.4.6",
     "angular-bootstrap": "^0.12.2",
     "bootstrap-sass": "^3.3.5",
-    "express": "^4.13.3",
-    "wiredep": "^2.2.2"
+    "express": "^4.13.3"
   }
 }
