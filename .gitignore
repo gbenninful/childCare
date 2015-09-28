@@ -44,4 +44,4 @@ Temporary Items
 
 .idea
 node_modules/
-client/bundle.js
+client/.tmp

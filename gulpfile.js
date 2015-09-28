@@ -5,43 +5,41 @@
 //TODO: Add minify, clean and watch(restart server on js file change ) tasks
 
 (function () {
-    "use strict";
+    'use strict';
 
     var gulp = require('gulp'),
         config = require('./gulpConfig.js'),
-        $ = require('gulp-load-plugins')({lazy: true});
+        $ = require('gulp-load-plugins')();
 
 
     gulp.task('serve', function () {
-        var express = require('express'),
-            app = express(),
-            path = require('path');
-
-        app.use(express.static('./client'));
-
-        app.get('/', function (req, res) {
-            res.sendFile('./client/index.html');
-        });
-
-        app.listen(3000, function () {
-            console.log('Child Care App is running on Port 3000');
+        var server = require('./server/server.js')();
+        server.listen(3000, function () {
+            console.log('Child Care App is now running on Port 3000');
         });
     });
 
-    gulp.task('browserify', function () {
-        var rename = require('gulp-rename'),
-            browserify = require('gulp-browserify');
-
+    gulp.task('build', function () {
         // Single entry point to browserify
         gulp.src('./client/index.js')
-            .pipe(browserify({
+            .pipe($.browserify({
                 insertGlobals: true
             }))
-            .pipe(rename('bundle.js'))
-            .pipe(gulp.dest('./client/'))
+            .pipe($.rename('bundle.js'))
+            .pipe(gulp.dest('./client/.tmp/'))
     });
 
-    gulp.task('build', ['browserify', 'serve']);
+    gulp.task('test', function(done){
+        var karmaServer = require('karma').Server;
+
+        new karmaServer({
+            configFile: __dirname + '/karma.conf.js',
+            singleRun : true
+        }, function(){
+            done
+        }).start();
+    });
+
 
 
 }());
