@@ -1,17 +1,21 @@
-/**
- * Created by George on 9/26/2015.
- */
-module.export = function(){
-    "use strict";
+module.exports = function () {
 
-    var client = './client/';
+    'use strict';
 
-    var config = {
-        index: client + 'index.html',
-        js: ['./client/app/*.js', './client/app/**/*.js']
-    };
+    var client = './client/',
 
-    config.getWiredepDefaultOptions = function(){
+        config = {
+            index: client + 'index.html',
+            // js: ['./client/app/*.js', './client/app/**/*.js'],
+
+            //All JS to vet
+            allJs: [
+                './src/**/*.js',
+                './*.js'
+            ]
+        };
+
+    config.getWiredepDefaultOptions = function () {
 
         var options = {
             bowerJson: config.bower.json,
@@ -23,4 +27,4 @@ module.export = function(){
     };
 
     return config;
-}
+};

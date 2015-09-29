@@ -1,6 +1,4 @@
-/**
- * Created by George on 9/26/2015.
- */
+
 (function () {
     'use strict';
 
@@ -8,14 +6,14 @@
         var express = require('express'),
             app = express();
 
-        app.use(express.static('./client'));
+        app.use(express.static('./src/client'));
 
         app.get('/', function (req, res) {
-            res.sendFile('./client/index.html');
+            res.sendFile('./src/client/index.html');
         });
 
         return app;
-    }
+    };
 
 }());
 
