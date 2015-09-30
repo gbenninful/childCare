@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ChildCare" >
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href=".tmp/style.css"/>
+    <link rel="stylesheet" type="text/css" href=".tmp/styles.css"/>
 </head>
 <body>
     <div ui-view></div>
 </body>
 
-<script src=".tmp/bundle.js"></script>
+<script src="/node_modules/angular/angular.min.js"></script>
+<script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="index.js"></script>
+<script src="route.js"></script>
+<script src="src/child/childController.js"></script>
+<script src="src/home/homeController.js"></script>
 
 </html>

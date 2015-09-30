@@ -2,16 +2,15 @@
  * Created by George on 9/26/2015.
  */
 (function () {
-    "use strict";
+    'use strict';
 
-
+    angular.module('ChildCare')
+        .controller('ChildController', ChildController);
 
     /** @ngInject */
-    module.exports = function ($scope) {
-
+    function ChildController() {
         var vm = this;
         vm.name = 'Hello there';
 
     }
-
 }());
