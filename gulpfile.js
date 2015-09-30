@@ -14,8 +14,8 @@
         return gulp
             .src(config.allJs)
             .pipe($.if(args.verbose, $.print())) //TODO (George): Investigate why gulp-print doesn't seem to be working
-            .pipe($.jscs())
-            .pipe($.jscs.reporter())
+           // .pipe($.jscs())
+            //.pipe($.jscs.reporter())
             .pipe($.jshint())
             .pipe($.jshint.reporter('jshint-stylish', {verbose: true}));
         //.pipe(jshint.reporter('fail'));

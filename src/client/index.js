@@ -21,18 +21,6 @@
             $urlRouterProvider.otherwise('/');
         });
 
-    /*require('angular');
-    require('angular-ui-router');
-
-    angular.element(document).ready(function(){
-        angular.module('ChildCare', [ 'ui.router' ])
-            .config(require('route.js'))
-            .controller('HomeController', require('app/home/homeController.js'))
-            .controller('ChildController', require('app/child/childController.js'));
-
-        angular.bootstrap(document, ['ChildCare']);
-
-    });*/
 })();
 
 
