@@ -36,7 +36,8 @@
     "karma": "^0.13.10",
     "karma-browserify": "^4.3.0",
     "karma-chrome-launcher": "^0.2.0",
-    "karma-jasmine": "^0.3.6",
+    "karma-jasmine": "^  0.3.6",
+    "wiredep": "^2.2.2",
     "wrench": "^1.5.8",
     "yargs": "^3.26.0"
   },
@@ -45,6 +46,7 @@
     "angular-bootstrap": "^0.12.2",
     "angular-ui-router": "^0.2.15",
     "bootstrap-sass": "^3.3.5",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "jquery": "^2.1.4"
   }
 }

@@ -10,12 +10,14 @@
     var gulp = require('gulp'),
         wrench = require('wrench');
 
-    wrench.readdirSyncRecursive('./gulp').map(function(file){
-       require('./gulp/'+ file);
+    wrench.readdirSyncRecursive('./gulp').map(function (file) {
+        require('./gulp/' + file);
     });
 
 
-    gulp.task('build', ['clean', 'styles', 'browserify', 'lint']);
+    gulp.task('build', ['wiredep'], function(){
+        gulp.start('serve');
+    });
 
 
 }());

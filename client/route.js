@@ -12,13 +12,13 @@
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'src/home/home.html',
+                templateUrl: 'app/home/home.html',
                 controller: 'HomeController',
                 controllerAs: 'vm'
             })
             .state('child', {
                 url: '/child',
-                templateUrl: 'src/child/child.html',
+                templateUrl: 'app/child/child.html',
                 controller: 'ChildController',
                 controllerAs: 'vm'
             });

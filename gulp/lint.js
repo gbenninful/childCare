@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 
 gulp.task('lint', function () {
     return gulp
-        .src(config.alljs)
+        .src(config.js)
         .pipe($.jscs())
         .pipe($.jshint())
         .pipe($.if(args.verbose, $.print()))
@@ -16,3 +16,6 @@ gulp.task('lint', function () {
         .pipe($.jshint.reporter('fail'))
         .pipe($.jshint.reporter('fail'));
 });
+
+
+
