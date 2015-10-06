@@ -7,26 +7,17 @@ var gulp = require('gulp'),
         camelize: true
     });
 
-gulp.task('browserify', ['clean'], function () {
+gulp.task('browserify', function () {
     // Single entry point to browserify
-    gulp.src(config.index)
+    return gulp.src(config.js)
+        .pipe($.concat('bundle.js'))
         .pipe($.browserify({
-            insertGlobals: true
+            insertGlobals: false,
+            debug: false,
+            transform: ['brfs']
         }))
         .pipe($.ngAnnotate())
-        .pipe($.uglify())
-        .pipe($.rename('bundle.js'))
-        .pipe(gulp.dest(config.tmp));
+        //.pipe($.uglify())
+        .pipe(gulp.dest(config.dist));
 });
 
-
-gulp.task('wiredep', function(){
-    var options = config.getWiredepDefaultOptions();
-    var wiredep = require('wiredep').stream;
-
-    return gulp
-        .src(config.index)
-        .pipe(wiredep(options))
-        .pipe($.inject(gulp.src(config.js)))
-        .pipe(gulp.dest(config.client));
-});

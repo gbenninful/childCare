@@ -1,34 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ChildCare">
+<html lang="en" ng-app="ChildCare" ng-strict-di>
 <head>
     <meta charset="UTF-8">
     <title></title>
     <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/foundation/css/foundation.css" />
     <!-- endbower -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/client/dist/styles.css">
+    <!-- endinject -->
 </head>
 <body>
     <div ui-view></div>
 </body>
 
 <!-- bower:js -->
-<script src="../node_modules/jquery/dist/jquery.js"></script>
-<script src="../node_modules/angular/angular.js"></script>
-<script src="../node_modules/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-animate/angular-animate.js"></script>
+<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="/bower_components/jquery.cookie/jquery.cookie.js"></script>
+<script src="/bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+<script src="/bower_components/foundation/js/foundation.js"></script>
 <!-- endbower -->
 
-
 <!-- inject:js -->
-
-<script src="/client/index.js"></script>
-
-<script src="/client/route.js"></script>
-
-<script src="/client/app/child/childController.js"></script>
-
-<script src="/client/app/home/homeController.js"></script>
-
+<script src="/client/dist/bundle.js"></script>
 <!-- endinject -->
 
 </html>

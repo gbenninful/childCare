@@ -1,29 +1,23 @@
 module.exports = function () {
     'use strict';
 
-    var client = './client/';
-
     var config = {
-        client : client ,
-        js: ['./client/*.js', './client/app/**/*.js', './client/app/**/*.js'],
+        client: './client/',
+        dist: './client/dist/',
         index: './client/index.html',
-        styles: './client/assets/styles/*.scss',
-        tmp: './client/.tmp/',
+        js: ['./client/*.js', './client/**/**/*.js', '!./client/dist/*.js'],
+        jsBundle: './client/dist/bundle.js',
+        css: './client/assets/styles/*.scss',
+        cssBundle: './client/dist/styles.css',
         karmaConf: __dirname + '/karma.conf.js',
-        bower: {
-            json : require('./package.json'),
-            directory:('./node_modules/'),
-            ignorePath : '../../client/'
-        }
-    };
-
-    config.getWiredepDefaultOptions = function () {
-        var options = {
-            bowerJson: config.bower.json,
-            directory: config.bower.directory,
-            ignorePath: config.bower.ignorePath
-        };
-        return options;
+        modules: {
+            bowerJson: require('./bower.json'),
+            directory: ('./bower_components/'),
+            ignorePath: '..'
+        },
+        defaultPort: 4000,
+        nodeServer: './server/server.js',
+        server: './server/'
     };
 
     return config;

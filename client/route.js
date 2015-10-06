@@ -1,6 +1,3 @@
-/**
- * Created by George on 9/26/2015.
- */
 (function () {
     'use strict';
 
@@ -10,6 +7,12 @@
     /** @ngInject */
     function configuration($stateProvider, $urlRouterProvider) {
         $stateProvider
+            .state('login', {
+                url: '/login',
+                templateUrl: 'app/login/login.html',
+                controller: 'LoginController',
+                controllerAs: 'vm'
+            })
             .state('home', {
                 url: '/',
                 templateUrl: 'app/home/home.html',

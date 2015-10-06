@@ -10,6 +10,6 @@ gulp.task('test', function (done) {
         configFile: config.karmaConf,
         singleRun: true
     }, function () {
-        done
+        done();
     }).start();
 });

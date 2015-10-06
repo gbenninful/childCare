@@ -90,7 +90,7 @@
 
   // Custom Globals
   "globals"       : {
-    "angular" : true,
+    "angular" : false,
     "module" : true,
     "require" : true
   }        // additional predefined global variables

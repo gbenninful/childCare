@@ -1,6 +1,3 @@
-/**
- * Created by George on 9/26/2015.
- */
 (function () {
     'use strict';
 
@@ -11,6 +8,5 @@
     function ChildController() {
         var vm = this;
         vm.name = 'Hello there';
-
     }
 }());

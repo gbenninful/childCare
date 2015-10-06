@@ -1,23 +1,12 @@
-/**
- * Created by George on 9/26/2015.
- */
-
-//TODO: Add minify, and watch(restart server on js file change ) tasks
-
 (function () {
     'use strict';
 
     var gulp = require('gulp'),
-        wrench = require('wrench');
+        fs = require('fs');
 
-    wrench.readdirSyncRecursive('./gulp').map(function (file) {
+    fs.readdirSync('./gulp').filter(function (file) {
+        return (/\.(js)$/i).test(file);
+    }).map(function (file) {
         require('./gulp/' + file);
     });
-
-
-    gulp.task('build', ['wiredep'], function(){
-        gulp.start('serve');
-    });
-
-
 }());
