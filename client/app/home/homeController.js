@@ -2,11 +2,19 @@
     'use strict';
 
     angular.module('ChildCare')
-        .controller('ChildController', ChildController);
+        .controller('HomeController', HomeController);
 
     /** @ngInject */
-    function ChildController() {
+    function HomeController($state) {
         var vm = this;
-        vm.name = 'Hello there';
+
+        vm.name = 'Jeff Rey';
+        vm.title = 'Kickass web Developer';
+        vm.viewChild = viewChild;
+
+        function viewChild(){
+            $state.go('child');
+            console.log('to child state');
+        }
     }
 }());

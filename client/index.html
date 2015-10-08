@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <!-- build:css css/lib.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/foundation/css/foundation.css" />
     <!-- endbower -->
+    <!-- endbuild-->
 
+    <!-- build:css css/app.css -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="/client/dist/styles.css">
+    <link rel="stylesheet" href="/client/.tmp/styles.css">
     <!-- endinject -->
+    <!-- endbuild-->
 </head>
 <body>
     <div ui-view></div>
 </body>
 
+<!-- build:js js/lib.js -->
 <!-- bower:js -->
 <script src="/bower_components/jquery/dist/jquery.js"></script>
 <script src="/bower_components/angular/angular.js"></script>
@@ -26,9 +31,14 @@
 <script src="/bower_components/jquery-placeholder/jquery.placeholder.js"></script>
 <script src="/bower_components/foundation/js/foundation.js"></script>
 <!-- endbower -->
+<!-- endbuild -->
 
+<!-- build:js js/app.js -->
 <!-- inject:js -->
-<script src="/client/dist/bundle.js"></script>
+<script src="/client/.tmp/bundle.js"></script>
+<script src="/client/.tmp/templates.js"></script>
 <!-- endinject -->
+<!-- endbuild -->
+
 
 </html>

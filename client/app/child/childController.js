@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('ChildCare')
-        .controller('HomeController', HomeController);
+        .controller('ChildController', ChildController);
 
     /** @ngInject */
-    function HomeController() {
+    function ChildController() {
 
         var vm = this;
         vm.name = 'Home sweet home';

@@ -5,7 +5,7 @@
     var mongoose = require('mongoose');
     var bodyParser = require('body-parser');
     var app = express();
-    var port = process.env.PORT || 6000;
+    var port = process.env.PORT || 4000;
     var bookRouter = require('./routes/bookRoutes')();
     var userRouter = require('./routes/userRoutes')();
     var projectRouter = require('./routes/projectRoutes')();
@@ -35,7 +35,7 @@
     app.use('/api/expenseList', expenseListRouter);
 
     app.listen(port, function(){
-        console.log('listening on port ', port);
+        console.log('Server listening on port ', port);
     });
 }());
 

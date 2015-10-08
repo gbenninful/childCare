@@ -7,13 +7,14 @@ var gulp = require('gulp'),
         camelize: true
     });
 
-gulp.task('styles', function () {
+gulp.task('templatecache', function () {
     return gulp
-        .src(config.css)
-        .pipe($.plumber())
-        .pipe($.sass())
-        .pipe($.autoprefixer({browsers: ['last 2 version', '> 5%']}))
-        .pipe($.rename('styles.css'))
+        .src(config.htmlTemplates)
+        //.pipe($.MinifyHtml({ empty:true}))
+        .pipe($.angularTemplatecache(config.templateCache.file, config.templateCache.options))
         .pipe(gulp.dest(config.temp));
 });
+
+
+
 

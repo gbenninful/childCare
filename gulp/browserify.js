@@ -18,6 +18,6 @@ gulp.task('browserify', function () {
         }))
         .pipe($.ngAnnotate())
         //.pipe($.uglify())
-        .pipe(gulp.dest(config.dist));
+        .pipe(gulp.dest(config.temp));
 });
 

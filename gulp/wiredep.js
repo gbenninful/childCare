@@ -8,7 +8,7 @@ gulp.task('wiredep', function () {
     var wiredep = require('wiredep').stream;
     return gulp
         .src(config.index)
-        .pipe(wiredep(config.modules))
         .pipe($.plumber())
+        .pipe(wiredep(config.modules))
         .pipe(gulp.dest(config.client));
 });
