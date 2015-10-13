@@ -1,89 +1,135 @@
-<form name="registerForm" novalidate="novalidate" ng-submit="vm.register(registerForm)">
-    <section class="large-6 columns">
-        <h4 class="text-center">Register</h4>
+<div layout="row" ng-cloak>
+    <md-content flex-offset="35" flex="30">
+        <form name="registerForm" novalidate="novalidate" ng-submit="vm.register(registerForm)">
+            <h4 class="md-title">Sign Up</h4>
+            <md-input-container flex>
+                <label>First Name</label>
+                <input type="text" name="firstName" ng-model="vm.guest.firstName" />
 
-        <div class="row">
-            <div class="large-6 columns">
-                <label> First Name
-                    <input type="text" name="firstName" ng-model="vm.guest.firstName" placeholder="First Name"
-                           required/>
-                </label>
+                <div ng-messages="registerForm.firstName.$error"
+                     ng-show="registerForm.firstName.$touched || registerForm.$submitted">
+                    <p ng-message="required"> First name is required</p>
+                </div>
+            </md-input-container>
+            <md-input-container flex>
+                <label> Middle Name </label>
+                <input type="text" name="middleName" ng-model="vm.guest.middleName" />
+
+                <div ng-messages="registerForm.middleName.$error"
+                     ng-show="registerForm.middleName.$touched || registerForm.$submitted">
+                    <p ng-message="required"> Middle name is required</p>
+                </div>
+            </md-input-container>
+            <md-input-container flex>
+                <label> Last Name </label>
+                <input type="text" name="lastName" ng-model="vm.guest.lastName" />
+
+                <div ng-messages="registerForm.lastName.$error"
+                     ng-show="registerForm.lastName.$touched || registerForm.$submitted">
+                    <p ng-message="required"> Last name is required</p>
+                </div>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>Email </label>
+                <input type="text" name="email" ng-model="vm.guest.email" ng-pattern="/^.+@.+\..+$/" />
+
+                <div ng-messages="registerForm.email.$error"
+                     ng-show="registerForm.email.$touched || registerForm.$submitted">
+                    <p ng-message="required"> Email is required</p>
+
+                    <p ng-message="pattern"> Email is invalid</p>
+                </div>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label> Date Of Birth </label>
+                <input type="text" name="dateOfBirth" ng-model="vm.guest.dateOfBirth" />
+
+                <div ng-messages="registerForm.dateOfBirth.$error"
+                     ng-show="registerForm.dateOfBirth.$touched || registerForm.$submitted">
+                    <p ng-message="required"> Date of Birth is required</p>
+                </div>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label> Phone Number </label>
+                <input type="text" name="phoneNumber" ng-model="vm.guest.phone[0].number" />
+
+                <div ng-messages="registerForm.phoneNumber.$error"
+                     ng-show="registerForm.phoneNumber.$touched || registerForm.$submitted">
+                    <p ng-message="required"> Phone number is required</p>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label> Line 1 </label>
+                <input type="text" ng-model="vm.guest.address[0].line1" />
+
+                <div ng-messages="registerForm.phoneNumber.$error"
+                     ng-show="registerForm.phoneNumber.$touched || registerForm.$submitted">
+                    <p ng-message="required"> Line 1 is required</p>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label> Line 2 </label>
+                <input type="text" ng-model="vm.guest.address[0].line2" />
+
+                <div ng-messages="registerForm.phoneNumber.$error"
+                     ng-show="registerForm.phoneNumber.$touched || registerForm.$submitted">
+                    <p ng-message="required"> Line 2 is required</p>
+                </div>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label> State </label>
+                <md-select name="state" ng-model="vm.guest.state">
+                    <md-option ng-repeat="state in vm.states" value="{{state.value}}">
+                        {{state.value}}
+                    </md-option>
+                </md-select>
+
+                <div ng-messages="registerForm.state.$error"
+                     ng-show="registerForm.state.$touched || registerForm.$submitted">
+                    <p ng-message="required"> State is required</p>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label> City </label>
+                <input type="text" name="city" ng-model="vm.guest.address[0].city" />
+
+                <div ng-messages="registerForm.city.$error"
+                     ng-show="registerForm.city.$touched || registerForm.$submitted">
+                    <p ng-message="required"> City is required</p>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label> Zip Code </label>
+                <input type="text" name="zipCode" ng-model="vm.guest.address[0].zipCode" />
+
+                <div ng-messages="registerForm.zipCode.$error"
+                     ng-show="registerForm.zipCode.$touched || registerForm.$submitted">
+                    <p ng-message="required"> Zip Code is required </p>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label> Country </label>
+                <input type="text" name="country" ng-model="vm.guest.address[0].country" />
+
+                <div ng-messages="registerForm.country.$error"
+                     ng-show="registerForm.country.$touched || registerForm.$submitted">
+                    <p ng-message="required"> Country is required</p>
+                </div>
+            </md-input-container>
+
+
+            <div layout="row" layout-align="center center">
+                <md-button class="md-raised md-primary "> Register</md-button>
             </div>
-        </div>
-        <div ng-messages="registerForm.firstName.$error"
-             ng-show="registerForm.firstName.$touched || registerForm.$submitted">
-            <p class="error" ng-message="required"> Field is required</p>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label> Middle Name
-                    <input type="text" ng-model="vm.guest.middleName" placeholder="Middle Name"/>
-                </label>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="large-6 columns">
-                <label> Last Name
-                    <input type="text" name="lastName" ng-model="vm.guest.lastName" placeholder="Last Name" required/>
-                </label>
-            </div>
-        </div>
-        <div ng-messages="registerForm.lastName.$error"
-             ng-show="registerForm.lastName.$touched || registerForm.$submitted">
-            <p class="error" ng-message="required"> Field is required</p>
-        </div>
-
-        <div class="row">
-            <div class="large-6 columns">
-                <label> Date Of Birth
-                    <input type="text" ng-model="vm.guest.dateOfBirth" placeholder="Date Of Birth"/>
-                </label>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="large-6 columns">
-                <label> Phone Number
-                    <input type="text" ng-model="vm.guest.phone[0].number" placeholder="Home Phone Number"/>
-                </label>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="large-6 columns">
-                <label> Home Address
-                    <label> Line 1
-                        <input type="text" ng-model="vm.guest.address[0].line1" placeholder="Line 1"/>
-                    </label>
-                    <label> Line 2
-                        <input type="text" ng-model="vm.guest.address[0].line2" placeholder="Line 2"/>
-                    </label>
-                    <label> City
-                        <input type="text" ng-model="vm.guest.address[0].city" placeholder="City"/>
-                    </label>
-                    <label> State
-                        <select ng-model="vm.guest.address[0].state"
-                                ng-options="state.value as state.label for state in vm.states">
-                            <option value="">Select State</option>
-                        </select>
-                    </label>
-                    <label> ZipCode
-                        <input type="text" ng-model="vm.guest.address[0].zipcode" placeholder="Zip Code"/>
-                    </label>
-                    <label> Country
-                        <input type="text" ng-model="vm.guest.address[0].country" placeholder="Country"/>
-                    </label>
-                </label>
-            </div>
-        </div>
-
-        <div class="">
-            <button type="submit">Register Now</button>
-        </div>
-    </section>
-    <section class="large-6 columns">
-        <h4 class="text-center">Log In</h4>
-    </section>
-
-</form>
+        </form>
+    </md-content>
+</div>

@@ -6,14 +6,10 @@
     var bodyParser = require('body-parser');
     var app = express();
     var port = process.env.PORT || 4000;
-    mongoose.connect('mongodb://localhost/childCare');
-
     //var authorize = require('./routes/authorize.route')();
-    var childRoutes = require('./routes/child.route')();
-    var caretakerRoutes = require('./routes/caretaker.route')();
-    var parentRoutes = require('./routes/parent.route')();
-    var physicianRoutes = require('./routes/physician.route')();
+    var apartmentRoutes = require('./routes/apartment.route')();
 
+    mongoose.connect('mongodb://localhost/childCare');
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
 
@@ -24,14 +20,12 @@
         res.sendFile('./client/index.html');
     });
 
-    app.get('/api', function (req, res) {
-        res.send('Welcome to Child Care API');
+    app.get('/v1', function (req, res) {
+        res.send('Welcome to Apartment Management API');
     });
-    //app.use('/api/authorize', authorize);
-    app.use('/api/child', childRoutes);
-    app.use('/api/caretaker', caretakerRoutes);
-    app.use('/api/parent', parentRoutes);
-    app.use('/api/physician', physicianRoutes);
+
+   //app.use('/v1/authorize', authorize);
+    app.use('/v1/apartment', apartmentRoutes);
 
     app.listen(port, function(){
         console.log('Server listening on port ', port);

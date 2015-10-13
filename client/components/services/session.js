@@ -9,24 +9,20 @@
 
         return {
             authorize: authorize,
-            registerParent: registerParent,
-            registerChild: registerChild
+            registerUnit: registerUnit
         };
 
         function authorize(data) {
-            return makeRequest('POST', '/api/authorize', data);
-        }
-
-        function registerParent(data) {
-            return makeRequest('POST', '/api/parent', data);
-        }
-
-        function registerChild(data) {
-            return makeRequest('POST', '/api/child', data);
+            return makeRequest('POST', '/v1/authorize', data);
         }
 
 
-        function makeRequest(method, url, data){
+        function registerUnit(data) {
+            return makeRequest('POST', '/v1/apartment', data);
+        }
+
+
+        function makeRequest(method, url, data) {
             var deferred = $q.defer();
             $http({
                 method: method,
