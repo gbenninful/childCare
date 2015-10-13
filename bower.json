@@ -1,0 +1,35 @@
+{
+  "name": "ChildCare App",
+  "version": "0.1.0",
+  "homepage": "https://github.com/gbenninful/childCare",
+  "authors": [
+    "George & Jeff Enninful"
+  ],
+  "description": "Childcare Application",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "Childcare",
+    "angular",
+    "application"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "angular-sanitize": "~1.4.7",
+    "angular-cookies": "~1.4.7",
+    "angular-messages": "~1.4.7"
+  }
+}
