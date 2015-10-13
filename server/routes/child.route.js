@@ -1,15 +1,16 @@
 var express = require('express');
 
 module.exports = function () {
-    var userRouter = express.Router();
-    var User = require('../models/userModel');
-    userRouter.use('/:userId', oneMiddleWare);
 
-    userRouter.route('/')
+    var childRouter = express.Router();
+    var Child = require('../models/child.model');
+    childRouter.use('/:childId', oneMiddleWare);
+
+    childRouter.route('/')
         .get(getAll)
         .post(postOne);
 
-    userRouter.route('/:userId')
+    childRouter.route('/:childId')
         .get(getOne)
         .put(putOne)
         .patch(patchOne)
@@ -17,7 +18,7 @@ module.exports = function () {
 
 
     function getAll(req, res) {
-        User.find(function (err, list) {
+        Child.find(function (err, list) {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -27,20 +28,20 @@ module.exports = function () {
     }
 
     function postOne(req, res) {
-        var user = new User(req.body);
+        var user = new Child(req.body);
         user.save();
         res.status(201).send(user);
     }
 
     function oneMiddleWare(req, res, next) {
-        User.findById(req.params.userId, function (err, user) {
+        Child.findById(req.params.expenseId, function (err, user) {
             if (err) {
                 res.status(500).send(err);
             } else if (user) {
                 req.user = user;
                 next();
             } else {
-                res.status(400).send('user not found');
+                res.status(400).send('Child not found');
             }
         });
     }
@@ -51,15 +52,11 @@ module.exports = function () {
 
     function putOne(req, res) {
         req.user.firstName = req.body.firstName;
+        req.user.middleName = req.body.middleName;
         req.user.lastName = req.body.lastName;
+        req.user.dob = req.body.dob;
         req.user.active = req.body.active;
-        req.user.city = req.body.city;
-        req.user.cityCode = req.body.cityCode;
-        req.user.role = req.body.role;
-        req.user.projects = req.body.projects;
-        req.user.manages = req.body.manages;
-        req.user.managedBy = req.body.managedBy;
-
+        
         req.user.save(function (err) {
             if (err) {
                 res.status(500).send(err);
@@ -91,10 +88,10 @@ module.exports = function () {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.status(204).send('user removed');
+                res.status(204).send('Child removed');
             }
         });
     }
 
-    return userRouter;
-};
+    return childRouter;
+}

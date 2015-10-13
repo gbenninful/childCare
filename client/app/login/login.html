@@ -1,4 +1,89 @@
-<p>This is the home page</p>
-<div>
-    <p>Sign in with your <a ng-href="{{microsoftUrl}}">Microsoft Account</a></p>
-</div>
+<form name="registerForm" novalidate="novalidate" ng-submit="vm.register(registerForm)">
+    <section class="large-6 columns">
+        <h4 class="text-center">Register</h4>
+
+        <div class="row">
+            <div class="large-6 columns">
+                <label> First Name
+                    <input type="text" name="firstName" ng-model="vm.guest.firstName" placeholder="First Name"
+                           required/>
+                </label>
+            </div>
+        </div>
+        <div ng-messages="registerForm.firstName.$error"
+             ng-show="registerForm.firstName.$touched || registerForm.$submitted">
+            <p class="error" ng-message="required"> Field is required</p>
+        </div>
+        <div class="row">
+            <div class="large-6 columns">
+                <label> Middle Name
+                    <input type="text" ng-model="vm.guest.middleName" placeholder="Middle Name"/>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-6 columns">
+                <label> Last Name
+                    <input type="text" name="lastName" ng-model="vm.guest.lastName" placeholder="Last Name" required/>
+                </label>
+            </div>
+        </div>
+        <div ng-messages="registerForm.lastName.$error"
+             ng-show="registerForm.lastName.$touched || registerForm.$submitted">
+            <p class="error" ng-message="required"> Field is required</p>
+        </div>
+
+        <div class="row">
+            <div class="large-6 columns">
+                <label> Date Of Birth
+                    <input type="text" ng-model="vm.guest.dateOfBirth" placeholder="Date Of Birth"/>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-6 columns">
+                <label> Phone Number
+                    <input type="text" ng-model="vm.guest.phone[0].number" placeholder="Home Phone Number"/>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-6 columns">
+                <label> Home Address
+                    <label> Line 1
+                        <input type="text" ng-model="vm.guest.address[0].line1" placeholder="Line 1"/>
+                    </label>
+                    <label> Line 2
+                        <input type="text" ng-model="vm.guest.address[0].line2" placeholder="Line 2"/>
+                    </label>
+                    <label> City
+                        <input type="text" ng-model="vm.guest.address[0].city" placeholder="City"/>
+                    </label>
+                    <label> State
+                        <select ng-model="vm.guest.address[0].state"
+                                ng-options="state.value as state.label for state in vm.states">
+                            <option value="">Select State</option>
+                        </select>
+                    </label>
+                    <label> ZipCode
+                        <input type="text" ng-model="vm.guest.address[0].zipcode" placeholder="Zip Code"/>
+                    </label>
+                    <label> Country
+                        <input type="text" ng-model="vm.guest.address[0].country" placeholder="Country"/>
+                    </label>
+                </label>
+            </div>
+        </div>
+
+        <div class="">
+            <button type="submit">Register Now</button>
+        </div>
+    </section>
+    <section class="large-6 columns">
+        <h4 class="text-center">Log In</h4>
+    </section>
+
+</form>

@@ -12,7 +12,7 @@
         vm.title = 'Kickass web Developer';
         vm.viewChild = viewChild;
 
-        function viewChild(){
+        function viewChild() {
             $state.go('child');
             console.log('to child state');
         }

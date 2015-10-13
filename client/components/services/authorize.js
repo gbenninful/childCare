@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('ChildCare')
-        .factory('authorization', authorization);
+        .factory('Authorization', authorization);
 
     /** @ngInject */
     function authorization() {

@@ -2,15 +2,15 @@ var express = require('express');
 
 module.exports = function () {
 
-    var projectRouter = express.Router();
-    var Project = require('../models/projectModel');
-    projectRouter.use('/:projectId', oneMiddleWare);
+    var physicianRouter = express.Router();
+    var Physician = require('../models/physician.model');
+    physicianRouter.use('/:physicianId', oneMiddleWare);
 
-    projectRouter.route('/')
+    physicianRouter.route('/')
         .get(getAll)
         .post(postOne);
 
-    projectRouter.route('/:projectId')
+    physicianRouter.route('/:physicianId')
         .get(getOne)
         .put(putOne)
         .patch(patchOne)
@@ -18,7 +18,7 @@ module.exports = function () {
 
 
     function getAll(req, res) {
-        Project.find(function (err, list) {
+        Physician.find(function (err, list) {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -28,41 +28,37 @@ module.exports = function () {
     }
 
     function postOne(req, res) {
-        var project = new Project(req.body);
-        project.save();
-        res.status(201).send(project);
+        var user = new Physician(req.body);
+        user.save();
+        res.status(201).send(user);
     }
 
     function oneMiddleWare(req, res, next) {
-        Project.findById(req.params.projectId, function (err, project) {
+        Physician.findById(req.params.physicianId, function (err, user) {
             if (err) {
                 res.status(500).send(err);
-            } else if (project) {
-                req.project = project;
+            } else if (user) {
+                req.user = user;
                 next();
             } else {
-                res.status(400).send('Project not found');
+                res.status(400).send('Physician not found');
             }
         });
     }
 
     function getOne(req, res) {
-        res.json(req.project);
+        res.json(req.user);
     }
 
     function putOne(req, res) {
-        req.project.name = req.body.name;
-        req.project.city = req.body.city;
-        req.project.cityCode = req.body.cityCode;
-        req.project.users = req.body.users;
-        req.project.managedBy = req.body.managedBy;
-        req.project.active = req.body.active;
+        req.user.name = req.body.name;
+        req.user.active = req.body.active;
 
-        req.project.save(function (err) {
+        req.user.save(function (err) {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.json(req.project);
+                res.json(req.user);
             }
         })
 
@@ -73,26 +69,26 @@ module.exports = function () {
             delete req.body._id;
         }
         for (var prop in req.body) {
-            req.project[prop] = req.body[prop];
+            req.user[prop] = req.body[prop];
         }
-        req.project.save(function (err) {
+        req.user.save(function (err) {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.json(req.project);
+                res.json(req.user);
             }
         });
     }
 
     function removeOne(req, res) {
-        req.project.remove(function (err) {
+        req.user.remove(function (err) {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.status(204).send('Project removed');
+                res.status(204).send('Physician removed');
             }
         });
     }
 
-    return projectRouter;
+    return physicianRouter;
 }

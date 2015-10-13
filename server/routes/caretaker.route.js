@@ -1,16 +1,15 @@
 var express = require('express');
 
 module.exports = function () {
+    var userRouter = express.Router();
+    var User = require('../models/caretaker.model');
+    userRouter.use('/:userId', oneMiddleWare);
 
-    var expenseRouter = express.Router();
-    var Expense = require('../models/expenseModel');
-    expenseRouter.use('/:expenseId', oneMiddleWare);
-
-    expenseRouter.route('/')
+    userRouter.route('/')
         .get(getAll)
         .post(postOne);
 
-    expenseRouter.route('/:expenseId')
+    userRouter.route('/:userId')
         .get(getOne)
         .put(putOne)
         .patch(patchOne)
@@ -18,7 +17,7 @@ module.exports = function () {
 
 
     function getAll(req, res) {
-        Expense.find(function (err, list) {
+        User.find(function (err, list) {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -28,37 +27,40 @@ module.exports = function () {
     }
 
     function postOne(req, res) {
-        var expenseItem = new Expense(req.body);
-        expenseItem.save();
-        res.status(201).send(expenseItem);
+        var user = new User(req.body);
+        user.save();
+        res.status(201).send(user);
     }
 
     function oneMiddleWare(req, res, next) {
-        Expense.findById(req.params.expenseId, function (err, expenseItem) {
+        User.findById(req.params.userId, function (err, user) {
             if (err) {
                 res.status(500).send(err);
-            } else if (expenseItem) {
-                req.expenseItem = expenseItem;
+            } else if (user) {
+                req.user = user;
                 next();
             } else {
-                res.status(400).send('Expense list item not found');
+                res.status(400).send('user not found');
             }
         });
     }
 
     function getOne(req, res) {
-        res.json(req.expenseItem);
+        res.json(req.user);
     }
 
     function putOne(req, res) {
-        req.expenseItem.name = req.body.name;
-        req.expenseItem.active = req.body.active;
+        req.user.firstName = req.body.firstName;
+        req.user.middleName = req.body.middleName;
+        req.user.lastName = req.body.lastName;
+        req.user.dob = req.body.dob;
+        req.user.active = req.body.active;
 
-        req.expenseItem.save(function (err) {
+        req.user.save(function (err) {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.json(req.expenseItem);
+                res.json(req.user);
             }
         })
 
@@ -69,26 +71,26 @@ module.exports = function () {
             delete req.body._id;
         }
         for (var prop in req.body) {
-            req.expenseItem[prop] = req.body[prop];
+            req.user[prop] = req.body[prop];
         }
-        req.expenseItem.save(function (err) {
+        req.user.save(function (err) {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.json(req.expenseItem);
+                res.json(req.user);
             }
         });
     }
 
     function removeOne(req, res) {
-        req.expenseItem.remove(function (err) {
+        req.user.remove(function (err) {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.status(204).send('Expense Item removed');
+                res.status(204).send('user removed');
             }
         });
     }
 
-    return expenseRouter;
-}
+    return userRouter;
+};

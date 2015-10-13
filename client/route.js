@@ -8,13 +8,13 @@
     function configuration($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('login', {
-                url: '/login',
+                url: '/',
                 templateUrl: 'app/login/login.html',
                 controller: 'LoginController',
                 controllerAs: 'vm'
             })
             .state('home', {
-                url: '/',
+                url: '/home',
                 templateUrl: 'app/home/home.html',
                 controller: 'HomeController',
                 controllerAs: 'vm'

@@ -1,6 +1,6 @@
 {
   "name": "childCare",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/gbenninful/childCare",
   "authors": [
     "Jeff Enninful <jeffenninful@yahoo.com>"
@@ -22,6 +22,7 @@
     "angular-animate": "~1.4.7",
     "angular-bootstrap": "~0.13.4",
     "angular-ui-router": "~0.2.15",
-    "foundation": "~5.5.2"
+    "foundation": "~5.5.2",
+    "angular-messages": "~1.4.7"
   }
 }

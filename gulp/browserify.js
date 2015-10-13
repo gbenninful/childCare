@@ -17,7 +17,6 @@ gulp.task('browserify', function () {
             transform: ['brfs']
         }))
         .pipe($.ngAnnotate())
-        //.pipe($.uglify())
         .pipe(gulp.dest(config.temp));
 });
 

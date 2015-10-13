@@ -9,9 +9,10 @@ var gulp = require('gulp'),
 
 gulp.task('templatecache', function () {
     return gulp
-        .src(config.htmlTemplates)
-        //.pipe($.MinifyHtml({ empty:true}))
+        .src(config.html)
+        .pipe($.minifyHtml({ empty:true}))
         .pipe($.angularTemplatecache(config.templateCache.file, config.templateCache.options))
+        .pipe($.uglify())
         .pipe(gulp.dest(config.temp));
 });
 

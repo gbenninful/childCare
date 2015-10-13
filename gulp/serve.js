@@ -22,6 +22,7 @@ gulp.task('serve', ['build'], function () {
         watch: [config.server]
     };
 
+    gulp.watch(config.html, ['templatecache']);
     gulp.watch(config.css, ['styles']);
     gulp.watch(config.js, ['lint', 'browserify']);
 

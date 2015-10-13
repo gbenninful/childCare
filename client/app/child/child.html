@@ -1,1 +1,6 @@
 <p>This is the child page</p>
+<div ng-repeat=" expense in vm.expenseList">
+    <p>Id : {{expense._id}}</p>
+    <p>Name : {{expense.name}}</p>
+    <hr/>
+</div>

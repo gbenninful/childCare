@@ -6,33 +6,32 @@
     var bodyParser = require('body-parser');
     var app = express();
     var port = process.env.PORT || 4000;
-    var bookRouter = require('./routes/bookRoutes')();
-    var userRouter = require('./routes/userRoutes')();
-    var projectRouter = require('./routes/projectRoutes')();
-    var expenseRouter = require('./routes/expenseRoutes')();
-    var expenseListRouter = require('./routes/expenseListRoutes')();
+    mongoose.connect('mongodb://localhost/childCare');
 
-    mongoose.connect('mongodb://localhost/bookAPI');
+    //var authorize = require('./routes/authorize.route')();
+    var childRoutes = require('./routes/child.route')();
+    var caretakerRoutes = require('./routes/caretaker.route')();
+    var parentRoutes = require('./routes/parent.route')();
+    var physicianRoutes = require('./routes/physician.route')();
+
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
 
     app.use(express.static('./client'));
     app.use('/client', express.static('client'));
     app.use('/bower_components', express.static('bower_components'));
-
     app.get('/', function (req, res) {
         res.sendFile('./client/index.html');
     });
 
     app.get('/api', function (req, res) {
-        res.send('Welcome to my API');
+        res.send('Welcome to Child Care API');
     });
-
-    app.use('/api/books', bookRouter);
-    app.use('/api/project', projectRouter);
-    app.use('/api/user', userRouter);
-    app.use('/api/expense', expenseRouter);
-    app.use('/api/expenseList', expenseListRouter);
+    //app.use('/api/authorize', authorize);
+    app.use('/api/child', childRoutes);
+    app.use('/api/caretaker', caretakerRoutes);
+    app.use('/api/parent', parentRoutes);
+    app.use('/api/physician', physicianRoutes);
 
     app.listen(port, function(){
         console.log('Server listening on port ', port);

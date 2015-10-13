@@ -4,12 +4,27 @@ var gulp = require('gulp'),
     config = require('../gulpConfig')();
 
 gulp.task('test', function (done) {
-    var karmaServer = require('karma').Server;
+    //var karmaServer = require('karma').Server;
+    //
+    //new karmaServer({
+    //    configFile: config.karmaConf,
+    //    singleRun: true
+    //}, function () {
+    //    done();
+    //}).start();
 
-    new karmaServer({
-        configFile: config.karmaConf,
+    var karmaServer = require('karma').server;
+
+    karmaServer.start({
+        config: config.karmaConf,
         singleRun: true
     }, function () {
-        done();
-    }).start();
+    }, function (result) {
+        if (result === 1) {
+            done('Test failed with code ', result);
+        } else {
+            console.log('test completed');
+            done();
+        }
+    });
 });

@@ -3,8 +3,8 @@
 
     angular.module('ChildCare', [
         'ui.router',
-        'ui.bootstrap'
-
+        'ui.bootstrap',
+        'ngMessages'
     ]);
 })();
 

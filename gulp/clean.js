@@ -6,13 +6,9 @@ var gulp = require('gulp'),
 
 gulp.task('clean', function (done) {
     var del = require('del');
-    if (config.dist) {
-        del(config.temp);
-    }
 
-    if (config.dist) {
-        del(config.dist);
-    }
+    del(config.temp);
+    del(config.dist);
     done();
 });
 

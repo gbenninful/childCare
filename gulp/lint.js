@@ -8,6 +8,7 @@ var gulp = require('gulp'),
 gulp.task('lint', function () {
     return gulp
         .src(config.js)
+        .pipe($.plumber())
         .pipe($.jscs())
         //.pipe($.jscs.reporter())
         .pipe($.jshint())

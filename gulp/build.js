@@ -9,5 +9,5 @@ var gulp = require('gulp'),
     });
 
 gulp.task('build', function (done) {
-    runSequence('clean', 'lint', 'browserify', 'templatecache', 'styles', 'wiredep', 'inject', done);
+    runSequence('clean', 'lint', 'browserify', 'templatecache', 'styles', 'images', 'wiredep', 'inject', done);
 });
